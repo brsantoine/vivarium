@@ -1,5 +1,3 @@
-import random
-from pygame.math import Vector2
 import core
 from carnivore import Carnivore
 from decomposeur import Decomposeur
@@ -21,7 +19,8 @@ def setup():
     core.memory('agents').append(Superpredateur(None))
     core.memory('agents').append(Decomposeur(None))
 
-    core.memory('item').append(Vegetal())
+    for i in range(0, 5):
+        core.memory('item').append(Vegetal())
 
     print("Setup END-----------")
 

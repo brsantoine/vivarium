@@ -1,5 +1,4 @@
 from agent import Agent
-from carnivore import Carnivore
 from superpredateur_body import SuperpredateurBody
 
 

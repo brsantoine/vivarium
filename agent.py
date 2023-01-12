@@ -8,7 +8,6 @@ class Agent:
         self.uuid = random.randint(100000, 999999999)
         self.body = body
         self.perceptionList = []
-        print(body)
 
     def createNew(self):
         pass

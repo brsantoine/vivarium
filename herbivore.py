@@ -1,7 +1,5 @@
 from agent import Agent
-from carnivore import Carnivore
 from herbivore_body import HerbivoreBody
-from vegetal import Vegetal
 
 
 class Herbivore(Agent):
