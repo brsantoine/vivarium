@@ -21,7 +21,6 @@ class Agent:
 
         manger, fuir, protect = self.filtrerPerception()
 
-        print(self.filtrerPerception())
         for agentAManger in manger:
             move = agentAManger.body.position - self.body.position
             move.scale_to_length(move.length() * .1)

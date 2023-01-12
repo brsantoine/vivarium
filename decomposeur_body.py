@@ -19,10 +19,10 @@ class DecomposeurBody(Body):
         self.fatigue = 0
         self.reproduction = 0
         if parent is None:
-            self.jaugeFaim = random.randint(3, 4)
-            self.jaugeFatigue = random.randint(3, 4)
-            self.jaugeReproduction = random.randint(4, 5)
-            self.esperance = random.randint(10, 20)
+            self.jaugeFaim = random.randint(30, 40)
+            self.jaugeFatigue = random.randint(30, 40)
+            self.jaugeReproduction = random.randint(40, 50)
+            self.esperance = random.randint(500, 600)
         else:
             evolution = random.randint(0, 2) - 1
             self.jaugeFaim = parent.body.jaugeFaim + (parent.body.jaugeFaim * evolution)
@@ -39,5 +39,8 @@ class DecomposeurBody(Body):
         self.esperance *= core.fps
 
     def show(self):
-        super().show()
         core.Draw.circle((255, 255, 255), self.position, self.size)
+        super().show()
+
+    def update(self):
+        super().update()

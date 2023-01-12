@@ -23,19 +23,35 @@ class Body:
         self.fatigue = 0
         self.jaugeReproduction = 0
         self.reproduction = 0
-        self.esperance = 1
+        self.esperance = 600
         self.isDead = False
         self.isSleeping = False
+        self.timeSleeping = 0
 
     def show(self):
         core.Draw.circle((100, 100, 100), self.position, self.fustrum.radius, 1)
 
-    def update(self):
-        self.jaugeFaim += 1
-        self.jaugeFatigue += 1
-        self.jaugeReproduction += 1
+        if self.isSleeping:
+            core.Draw.circle((255, 255, 255), self.position, self.size/2)
 
-        if self.dateNaissance + self.esperance > time.time():
+        if self.isDead:
+            core.Draw.circle((0, 0, 0), self.position, self.size/2)
+
+
+    def update(self):
+        self.faim += 1
+        self.fatigue += 1
+        self.reproduction += 1
+
+        if self.isSleeping:
+            self.timeSleeping += 1
+
+            if self.timeSleeping / core.fps >= 3:  # dors 3 secondes
+                self.isSleeping = False
+                self.timeSleeping = 0
+                self.fatigue = 0
+
+        if self.dateNaissance + self.esperance < time.time():
             self.isDead = True
 
         if self.fatigue >= self.jaugeFatigue:
@@ -44,14 +60,15 @@ class Body:
         if self.faim >= self.jaugeFaim:
             self.isDead = True
 
-        if self.acceleration.length() > self.accelerationMax:
-            self.acceleration.scale_to_length(self.accelerationMax/self.size)
-        self.vitesse += self.acceleration
-        if self.vitesse.length() > self.vitesseMax:
-            self.vitesse.scale_to_length(self.vitesseMax)
-        self.position += self.vitesse
+        if not self.isDead and not self.isSleeping:
+            if self.acceleration.length() > self.accelerationMax:
+                self.acceleration.scale_to_length(self.accelerationMax/self.size)
+            self.vitesse += self.acceleration
+            if self.vitesse.length() > self.vitesseMax:
+                self.vitesse.scale_to_length(self.vitesseMax)
+            self.position += self.vitesse
 
-        core.Draw.line((255, 255, 255), self.position, self.position + self.acceleration * 100, 1)
+            core.Draw.line((255, 255, 255), self.position, self.position + self.acceleration * 100, 1)
 
         self.acceleration = Vector2()
 

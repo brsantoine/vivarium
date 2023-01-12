@@ -11,15 +11,16 @@ from vegetal import Vegetal
 def setup():
     print("Setup START---------")
     core.fps = 30
-    core.WINDOW_SIZE = [400, 400]
+    core.WINDOW_SIZE = [1000, 700]
 
     core.memory("agents", [])
     core.memory("item", [])
 
     core.memory('agents').append(Carnivore(None))
+    core.memory('agents').append(Herbivore(None))
     core.memory('agents').append(Superpredateur(None))
     core.memory('agents').append(Decomposeur(None))
-    core.memory('agents').append(Herbivore(None))
+
     core.memory('item').append(Vegetal())
 
     print("Setup END-----------")

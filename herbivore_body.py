@@ -19,10 +19,10 @@ class HerbivoreBody(Body):
         self.fatigue = 0
         self.reproduction = 0
         if parent is None:
-            self.jaugeFaim = random.randint(5, 6)
-            self.jaugeFatigue = random.randint(4, 5)
-            self.jaugeReproduction = random.randint(3, 4)
-            self.esperance = random.randint(20, 30)
+            self.jaugeFaim = random.randint(50, 60)
+            self.jaugeFatigue = random.randint(40, 50)
+            self.jaugeReproduction = random.randint(30, 40)
+            self.esperance = random.randint(500, 600)
         else:
             evolution = random.randint(0, 2) - 1
             self.jaugeFaim = parent.body.jaugeFaim + (parent.body.jaugeFaim * evolution)
@@ -39,5 +39,9 @@ class HerbivoreBody(Body):
         self.esperance *= core.fps
 
     def show(self):
-        super().show()
         core.Draw.circle((0, 255, 0), self.position, self.size)
+        super().show()
+
+    def update(self):
+        super().update()
+

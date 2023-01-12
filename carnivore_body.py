@@ -19,10 +19,10 @@ class CarnivoreBody(Body):
         self.fatigue = 0
         self.reproduction = 0
         if parent is None:
-            self.jaugeFaim = random.randint(7, 8)
-            self.jaugeFatigue = random.randint(5, 6)
-            self.jaugeReproduction = random.randint(2, 3)
-            self.esperance = random.randint(30, 40)
+            self.jaugeFaim = random.randint(70, 80)
+            self.jaugeFatigue = random.randint(50, 60)
+            self.jaugeReproduction = random.randint(20, 30)
+            self.esperance = random.randint(500, 600)
         else:
             evolution = random.randint(0, 2) - 1
             self.jaugeFaim = parent.body.jaugeFaim + (parent.body.jaugeFaim * evolution)
@@ -36,8 +36,10 @@ class CarnivoreBody(Body):
         self.jaugeFaim *= core.fps
         self.jaugeFatigue *= core.fps
         self.jaugeReproduction *= core.fps
-        self.esperance *= core.fps
 
     def show(self):
-        super().show()
         core.Draw.circle((163, 46, 46), self.position, self.size)
+        super().show()
+
+    def update(self):
+        super().update()
