@@ -29,7 +29,8 @@ def setup():
 def updateEnvironment():
     for agent in core.memory('agents'):
         if agent.body.reproduction >= agent.body.jaugeReproduction:
-            core.memory('agents').append(agent.__class__)
+            agent.body.reproduction = 0
+            core.memory('agents').append(agent.createNew())
 
 
 def computePerception(agent):
@@ -67,5 +68,6 @@ def run():
     for agent in core.memory("agents"):
         applyDecision(agent)
 
+    updateEnvironment()
 
 core.main(setup, run)

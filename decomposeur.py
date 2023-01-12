@@ -1,6 +1,5 @@
 from agent import Agent
 from decomposeur_body import DecomposeurBody
-from vegetal import Vegetal
 
 
 class Decomposeur(Agent):
