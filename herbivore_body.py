@@ -23,6 +23,9 @@ class HerbivoreBody(Body):
             self.jaugeFatigue = random.randint(40, 50)
             self.jaugeReproduction = random.randint(20, 30)
             self.esperance = random.randint(500, 600)
+            self.jaugeFaim *= core.fps
+            self.jaugeFatigue *= core.fps
+            self.jaugeReproduction *= core.fps
         else:
             evolution = random.randint(0, 2) - 1
             self.jaugeFaim = parent.body.jaugeFaim + (parent.body.jaugeFaim * evolution / 100)
@@ -32,10 +35,6 @@ class HerbivoreBody(Body):
             self.jaugeReproduction = parent.body.jaugeReproduction + (parent.body.jaugeReproduction * evolution / 100)
             evolution = random.randint(0, 2) - 1
             self.esperance = parent.body.esperance + (parent.body.esperance * evolution * 3 / 100)
-
-        self.jaugeFaim *= core.fps
-        self.jaugeFatigue *= core.fps
-        self.jaugeReproduction *= core.fps
 
     def show(self):
         core.Draw.circle((0, 255, 0), self.position, self.size)

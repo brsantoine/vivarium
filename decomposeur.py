@@ -16,7 +16,8 @@ class Decomposeur(Agent):
 
         for otherAgent in self.perceptionList:
             otherAgent.dist = self.body.position.distance_to(otherAgent.body.position)
-            if (isinstance(otherAgent, Agent) and otherAgent.body.isDead and not isinstance(otherAgent, Decomposeur)) or otherAgent.__class__.__name__ == "Vegetal":
+            if (isinstance(otherAgent, Agent) and otherAgent.body.isDead and not isinstance(otherAgent, Decomposeur)) \
+                    or otherAgent.__class__.__name__ == "Vegetal" and self.body.fatigue > 30*self.body.jaugeFaim/100:  # 30%
                 manger.append(otherAgent)
 
         manger.sort(key=lambda x: x.dist, reverse=False)

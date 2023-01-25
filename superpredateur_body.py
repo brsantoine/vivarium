@@ -23,6 +23,9 @@ class SuperpredateurBody(Body):
             self.jaugeFatigue = random.randint(60, 70)
             self.jaugeReproduction = random.randint(40, 50)
             self.esperance = random.randint(500, 600)
+            self.jaugeFaim *= core.fps
+            self.jaugeFatigue *= core.fps
+            self.jaugeReproduction *= core.fps
         else:
             evolution = random.randint(0, 2) - 1
             self.jaugeFaim = parent.body.jaugeFaim + (parent.body.jaugeFaim * evolution / 100)
@@ -32,10 +35,6 @@ class SuperpredateurBody(Body):
             self.jaugeReproduction = parent.body.jaugeReproduction + (parent.body.jaugeReproduction * evolution / 100)
             evolution = random.randint(0, 2) - 1
             self.esperance = parent.body.esperance + (parent.body.esperance * evolution * 3 / 100)
-
-        self.jaugeFaim *= core.fps
-        self.jaugeFatigue *= core.fps
-        self.jaugeReproduction *= core.fps
 
     def show(self):
         core.Draw.circle((82, 82, 82), self.position, self.size)

@@ -19,23 +19,24 @@ class Agent:
         move = Vector2(random.randint(-1, 1), random.randint(-1, 1))
         while move.length() == 0:
             move = Vector2(random.randint(-1, 1), random.randint(-1, 1))
-        move.scale_to_length(move.length() * .05)
+        move.scale_to_length(move.length() * .1)
         self.body.acceleration += move
 
         manger, fuir, protect = self.filtrerPerception()
 
-        for agentAManger in manger:
-            move = agentAManger.body.position - self.body.position
-            move.scale_to_length(move.length() * .1)
+        if len(fuir) > 0:
+            move = self.body.position - fuir[0].body.position
+            move.scale_to_length(move.length() * .5)
             self.body.acceleration += move
-
-        for agentAFuir in fuir:
-            move = self.body.position - agentAFuir.body.position
+        elif len(manger) > 0:
+            if manger[0].__class__.__name__ == "Vegetal":
+                move = manger[0].position - self.body.position
+            else:
+                move = manger[0].body.position - self.body.position
             move.scale_to_length(move.length() * .2)
             self.body.acceleration += move
-
-        for agentPourProteger in protect:
-            move = agentPourProteger.body.position - self.body.position
+        elif len(protect) > 0:
+            move = protect[0].body.position - self.body.position
             move.scale_to_length(move.length() * .1)
             self.body.acceleration += move
 

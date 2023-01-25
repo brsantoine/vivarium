@@ -16,7 +16,7 @@ class Carnivore(Agent):
 
         for otherAgent in self.perceptionList:
             otherAgent.dist = self.body.position.distance_to(otherAgent.body.position)
-            if otherAgent.__class__.__name__ == "Herbivore":
+            if otherAgent.__class__.__name__ == "Herbivore" and self.body.fatigue > 50*self.body.jaugeFaim/100:  # 50% de faim
                 manger.append(otherAgent)
             if otherAgent.__class__.__name__ == "Superpredateur":
                 fuir.append(otherAgent)

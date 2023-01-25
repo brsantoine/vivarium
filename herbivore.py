@@ -15,13 +15,16 @@ class Herbivore(Agent):
         protect = []
 
         for otherAgent in self.perceptionList:
-            otherAgent.dist = self.body.position.distance_to(otherAgent.body.position)
-            if otherAgent.__class__.__name__ == "Vegetal":
-                manger.append(otherAgent)
-            if otherAgent.__class__.__name__ == "Carnivore":
-                fuir.append(otherAgent)
-            if otherAgent.__class__.__name__ == "Superpredateur":
-                protect.append(otherAgent)
+            if otherAgent.__class__.__name__ == "Vegetal":  # 70%
+                if self.body.fatigue > 70*self.body.jaugeFaim/100:
+                    otherAgent.dist = self.body.position.distance_to(otherAgent.position)
+                    manger.append(otherAgent)
+            else:
+                otherAgent.dist = self.body.position.distance_to(otherAgent.body.position)
+                if otherAgent.__class__.__name__ == "Carnivore":
+                    fuir.append(otherAgent)
+                if otherAgent.__class__.__name__ == "Superpredateur":
+                    protect.append(otherAgent)
 
         manger.sort(key=lambda x: x.dist, reverse=False)
         fuir.sort(key=lambda x: x.dist, reverse=False)

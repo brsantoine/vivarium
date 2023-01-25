@@ -8,4 +8,4 @@ class Vegetal(Item):
         Item.__init__(self)
 
     def show(self):
-        core.Draw.circle((255, 225, 0), self.position, 2)
+        core.Draw.circle((255, 225, 0), self.position, self.size)

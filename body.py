@@ -31,6 +31,13 @@ class Body:
     def show(self):
         core.Draw.circle((100, 100, 100), self.position, self.fustrum.radius, 1)
 
+        debutLigneFatigue = self.position + Vector2(-20, -15)
+        core.Draw.line((255, 255, 255), debutLigneFatigue, debutLigneFatigue + Vector2((self.jaugeFatigue - self.fatigue) / 50, 0))
+        debutLigneFaim = self.position + Vector2(-20, -20)
+        core.Draw.line((255, 0, 0), debutLigneFaim, debutLigneFaim + Vector2((self.jaugeFaim - self.faim) / 50, 0))
+        debutLigneReproduction = self.position + Vector2(-20, -25)
+        core.Draw.line((0, 255, 0), debutLigneReproduction, debutLigneReproduction + Vector2((self.jaugeReproduction - self.reproduction) / 50, 0))
+
         if self.isSleeping:
             core.Draw.circle((255, 255, 255), self.position, self.size/2)
 
@@ -77,13 +84,13 @@ class Body:
     def edge(self):
         if self.position.x <= self.size:
             self.vitesse.x *= -1
-            self.position.x = 0 + self.size * 2
+            self.position.x = 0 + self.size
         if self.position.x + self.size >= core.WINDOW_SIZE[0]:
             self.vitesse.x *= -1
-            self.position.x = core.WINDOW_SIZE[0] - self.size * 2
+            self.position.x = core.WINDOW_SIZE[0] - self.size
         if self.position.y <= self.size:
             self.vitesse.y *= -1
-            self.position.y = 0 + self.size * 2
+            self.position.y = 0 + self.size
         if self.position.y + self.size >= core.WINDOW_SIZE[1]:
             self.vitesse.y *= -1
-            self.position.y = core.WINDOW_SIZE[1] - self.size * 2
+            self.position.y = core.WINDOW_SIZE[1] - self.size
