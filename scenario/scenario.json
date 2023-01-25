@@ -1,0 +1,122 @@
+{
+   "duréeSimu": 600,
+   "SuperPredateur": {
+      "nb": 2,
+      "parametres": {
+         "vitesseMax": [
+            4,
+            5
+         ],
+         "accelerationMax": [
+            5,
+            6
+         ],
+         "MaxFaim": [
+            90,
+            100
+         ],
+         "MaxFatigue": [
+            60,
+            70
+         ],
+         "MaxReproduction": [
+            40,
+            50
+         ],
+         "Esperance": [
+            500,
+            600
+         ]
+      }
+   },
+   "Herbivore": {
+      "nb": 2,
+      "parametres": {
+         "vitesseMax": [
+            2,
+            3
+         ],
+         "accelerationMax": [
+            3,
+            4
+         ],
+         "MaxFaim": [
+            50,
+            60
+         ],
+         "MaxFatigue": [
+            40,
+            50
+         ],
+         "MaxReproduction": [
+            20,
+            30
+         ],
+         "Esperance": [
+            500,
+            600
+         ]
+      }
+   },
+   "Carnivore": {
+      "nb": 2,
+      "parametres": {
+         "vitesseMax": [
+            3,
+            4
+         ],
+         "accelerationMax": [
+            4,
+            5
+         ],
+         "MaxFaim": [
+            70,
+            80
+         ],
+         "MaxFatigue": [
+            50,
+            60
+         ],
+         "MaxReproduction": [
+            30,
+            40
+         ],
+         "Esperance": [
+            500,
+            600
+         ]
+      }
+   },
+   "Decomposeur": {
+      "nb": 2,
+      "parametres": {
+         "vitesseMax": [
+            1,
+            2
+         ],
+         "accelerationMax": [
+            2,
+            3
+         ],
+         "MaxFaim": [
+            30,
+            40
+         ],
+         "MaxFatigue": [
+            30,
+            40
+         ],
+         "MaxReproduction": [
+            20,
+            30
+         ],
+         "Esperance": [
+            500,
+            600
+         ]
+      }
+   },
+   "Vegetal": {
+      "nb": 25
+   }
+}

@@ -1,4 +1,5 @@
 import random
+import json
 
 from pygame import Vector2
 
@@ -13,18 +14,29 @@ from vegetal import Vegetal
 
 def setup():
     print("Setup START---------")
+
+    with open('scenario/scenario.json', 'r') as f:
+        core.memory("scenario", json.load(f))
+
     core.fps = 30
     core.WINDOW_SIZE = [1000, 700]
 
     core.memory("agents", [])
     core.memory("item", [])
 
-    core.memory('agents').append(Carnivore(None))
-    core.memory('agents').append(Herbivore(None))
-    core.memory('agents').append(Superpredateur(None))
-    core.memory('agents').append(Decomposeur(None))
+    for i in range(0, core.memory("scenario")['SuperPredateur']['nb']):
+        core.memory('agents').append(Superpredateur(None))
 
-    for i in range(0, 25):
+    for i in range(0, core.memory("scenario")['Carnivore']['nb']):
+        core.memory('agents').append(Carnivore(None))
+
+    for i in range(0, core.memory("scenario")['Herbivore']['nb']):
+        core.memory('agents').append(Herbivore(None))
+
+    for i in range(0, core.memory("scenario")['Decomposeur']['nb']):
+        core.memory('agents').append(Decomposeur(None))
+
+    for i in range(0, core.memory("scenario")['Vegetal']['nb']):
         core.memory('item').append(Vegetal())
 
     print("Setup END-----------")
@@ -44,7 +56,6 @@ def updateEnvironment():
                     agent.body.faim -= 30
                     core.memory('agents').remove(otherAgent)
 
-# todo add decomposeur in if in boucle for item
         if isinstance(agent, Herbivore):
             for item in core.memory('item'):
                 if isinstance(item, Vegetal) and agent.body.position.distance_to(item.position) <= agent.body.size:
